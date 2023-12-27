@@ -1,5 +1,9 @@
 {
 	"token": "",
 	"staff_channel": "",
-	"ticket_category": ""
+	"ticket_category": "",
+	"ticket_bot": "557628352828014614",
+	"ticket_detect_phrase": "Welcome",
+	"ticket_channel_prefix": "ticket-",
+	"staff_ping": "@here"
 }
