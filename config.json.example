@@ -5,5 +5,10 @@
 	"ticket_bot": "557628352828014614",
 	"ticket_detect_phrase": "Welcome",
 	"ticket_channel_prefix": "ticket-",
-	"staff_ping": "@here"
+	"staff_ping": "@here",
+	"auto_accept": {
+		"threshold": 5,
+		"remove_roles": [],
+		"add_roles": []
+	}
 }
