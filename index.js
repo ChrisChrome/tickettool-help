@@ -193,4 +193,35 @@ client.on("interactionCreate", async (interaction) => {
 
 });
 
+// Lets actually handle exceptions now
+process.on('unhandledRejection', (error) => {
+	// Log a full error with line number
+	sendLog(`${colors.red("[ERROR]")} ${error}`);
+	// If config.ntfyUrl is set, Send the exception to ntfy
+	if (config.ntfyUrl) fetch(config.ntfyUrl, {
+		method: 'POST', // PUT works too
+		body: error,
+		headers: {
+			'Title': 'TicketTool Watcher Bot Rejection',
+			'Priority': 5,
+			'Tags': 'warning,inbox_tray,TicketTool Watcher'
+		}
+	});
+});
+
+process.on('uncaughtException', (error) => {
+	// Log a full error with line number
+	sendLog(`${colors.red("[ERROR]")} ${error}`);
+	// If config.ntfyUrl is set, Send the exception to ntfy
+	if (config.ntfyUrl) fetch(config.ntfyUrl, {
+		method: 'POST', // PUT works too
+		body: error,
+		headers: {
+			'Title': 'TicketTool Watcher Bot Exception',
+			'Priority': 5,
+			'Tags': 'warning,inbox_tray,TicketTool Watcher'
+		}
+	});
+});
+
 client.login(config.token)
