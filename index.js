@@ -57,7 +57,10 @@ client.on("interactionCreate", async (interaction) => {
 	// Check if its a button event
 	if( !interaction.isButton() ) return;
 	// Check if the button is on an active ticket (if not, just ignore it, it should never happen)
-	if( !activeTickets[interaction.message.id] ) return;
+	if( !activeTickets[interaction.message.id] ) return interaction.reply({
+		content: "Something went wrong, this ticket is not seen as active/monitored. Please revert to using reactions.",
+		ephemeral: true
+	});
 	// Check if the user is staff, Just check for admin perm, you can add more checks if you want
 	if( !interaction.member.permissions.has("ADMINISTRATOR") ) return;
 	msg = activeTickets[interaction.message.id].adminMessage;
