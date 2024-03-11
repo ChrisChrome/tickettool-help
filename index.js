@@ -83,8 +83,6 @@ client.on("interactionCreate", async (interaction) => {
 		content: "Something went wrong, this ticket is not seen as active/monitored. Please revert to using reactions.",
 		ephemeral: true
 	});
-	// Check if the user is staff, Just check for admin perm, you can add more checks if you want
-	if (!interaction.member.permissions.has("ADMINISTRATOR")) return;
 	msg = activeTickets[interaction.message.id].adminMessage;
 	switch (interaction.customId) {
 		case "accept":
