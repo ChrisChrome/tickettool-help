@@ -1,6 +1,6 @@
 const config = require("./config.json");
 const Discord = require("discord.js");
-const client = new Discord.Client({ intents: ["Guilds", "GuildMembers", "GuildMessages", "MessageContent", "GuildMessageReactions", "DirectMessageReactions"] })
+const client = new Discord.Client({ intents: ["Guilds", "GuildMembers", "GuildMessages", "MessageContent", "GuildMessageReactions", "DirectMessageReactions", "GuildBans", "GuildPresences"] })
 const colors = require("colors")
 var staffChannel;
 client.on("ready", () => {
@@ -410,6 +410,42 @@ client.on("interactionCreate", async (interaction) => {
 
 	}
 
+});
+
+client.on("guildMemberAdd", async (member) => {
+	// Get the joinleave-log channel
+	let channel = client.channels.cache.get(config.joinleave_logs);
+	// If the channel is not found, return
+	if (!channel) return;
+
+	// Send the message
+	channel.send({
+		content: `:heavy_plus_sign:  ${member} ${member.user.tag} (${member.user.id}) joined the server`
+	});
+});
+
+client.on("guildMemberRemove", async (member) => {
+	// Get the joinleave-log channel
+	let channel = client.channels.cache.get(config.joinleave_logs);
+	// If the channel is not found, return
+	if (!channel) return;
+
+	// Send the message
+	channel.send({
+		content: `:heavy_minus_sign: ${member} ${member.user.tag} (${member.user.id}) left the server`
+	});
+});
+
+client.on("guildBanAdd", async (member) => {
+	// Get the joinleave-log channel
+	let channel = client.channels.cache.get(config.joinleave_logs);
+	// If the channel is not found, return
+	if (!channel) return;
+
+	// Send the message
+	channel.send({
+		content: `:hammer: ${member.user} ${member.user.tag} (${member.user.id}) was banned`
+	});
 });
 
 // Lets actually handle exceptions now

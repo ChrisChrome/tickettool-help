@@ -1,14 +1,18 @@
 {
 	"token": "",
 	"staff_channel": "",
+	"joinleave-logs": "",
 	"ticket_category": "",
-	"ticket_bot": "557628352828014614",
+	"ticket_bot": "",
 	"ticket_detect_phrase": "Welcome",
 	"ticket_channel_prefix": "ticket-",
 	"staff_ping": "@here",
 	"auto_accept": {
-		"threshold": 5,
-		"remove_roles": [],
-		"add_roles": []
-	}
+		"threshold": 4,
+		"remove_roles": [""],
+		"add_roles": [""],
+		"welcome_message": "Welcome %user%! Please be sure to read <#> and get some <#>!",
+		"welcome_channel": ""
+	},
+	"ntfyUrl": ""
 }
